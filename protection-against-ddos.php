@@ -3,7 +3,7 @@
 	Plugin Name: Protection against DDoS
 	Plugin URI: http://aimbox.com
 	Description: Protection against DDoS.
-	Version: 1.5.1
+	Version: 1.5.2
 	Author: Aimbox
 	Author URI: http://aimbox.com
 	License: GPLv2 or later
@@ -57,6 +57,8 @@
 			$defaults = array(
 				'deny_xmlrpc' => false,
 				'deny_feeds' => false,
+				'deny_autodiscover' => false,
+				'deny_wpad' => false,
 				'deny_countries' => true,
 				'countries' => '',
 				'redirect_url' => $this->redirect_url,
@@ -141,6 +143,8 @@
 				$settings = array(
 					'deny_xmlrpc' => !empty( $post['deny_xmlrpc'] ),
 					'deny_feeds' => !empty( $post['deny_feeds'] ),
+					'deny_autodiscover' => !empty( $post['deny_autodiscover'] ),
+					'deny_wpad' => !empty( $post['deny_wpad'] ),
 					'deny_countries' => !empty( $post['deny_countries'] ),
 					'countries' => $post['countries'],
 					'redirect_url' => $post['redirect_url'],
@@ -182,11 +186,19 @@
 						<td>
 							<p><label>
 								<input type="checkbox" name="<?php echo $this->option_name?>[deny_xmlrpc]" value="1" <?php echo $settings['deny_xmlrpc'] ? 'checked ':'' ?>/>
-								Deny access from outside to xmlrpc.php
+								Deny access <b>from outside</b> to xmlrpc.php
 							</label></p>
 							<p><label>
 								<input type="checkbox" name="<?php echo $this->option_name?>[deny_feeds]" value="1" <?php echo $settings['deny_feeds'] ? 'checked ':'' ?>/>
-								Deny access from outside to all feeds
+								Deny access <b>from outside</b> to all feeds
+							</label></p>
+							<p><label>
+								<input type="checkbox" name="<?php echo $this->option_name?>[deny_autodiscover]" value="1" <?php echo $settings['deny_autodiscover'] ? 'checked ':'' ?>/>
+                                    Deny access <b>from outside</b> to <a href="https://docs.microsoft.com/Exchange/architecture/client-access/autodiscover" target="_blank">/autodiscover/autodiscover.xml</a>
+							</label></p>
+							<p><label>
+								<input type="checkbox" name="<?php echo $this->option_name?>[deny_wpad]" value="1" <?php echo $settings['deny_wpad'] ? 'checked ':'' ?>/>
+                                    Deny access <b>from outside</b> to <a href="https://wikipedia.org/wiki/Web_Proxy_Auto-Discovery_Protocol" target="_blank">/wpad.dat</a>
 							</label></p>
 					<tr>
 						<th>
@@ -431,6 +443,19 @@ RewriteRule ^xmlrpc.php(/.*)?$ "{$redirect_url}" [R,L,NE]';
 RewriteCond %{REQUEST_URI} ^(.*/)?feed(/.*)?$ [OR]
 RewriteCond %{QUERY_STRING} ^(.*&)?feed=.+
 RewriteRule .* "{$redirect_url}" [R,L,NE]';
+
+			if ( $settings['deny_autodiscover'] )
+				$template .= '
+# Deny autodiscover
+'.$allow_localhost_cond.'
+RewriteRule ^autodiscover/autodiscover.xml(/.*)?$ "{$redirect_url}" [R,L,NE]';
+
+			if ( $settings['deny_wpad'] )
+				$template .= '
+# Deny wpad.dat
+'.$allow_localhost_cond.'
+RewriteRule ^wpad.dat(/.*)?$ "{$redirect_url}" [R,L,NE]';
+
 			if ( $settings['countries'] )
 			{
 				$countries = array();
