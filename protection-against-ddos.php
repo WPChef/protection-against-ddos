@@ -1,14 +1,12 @@
 <?php
-	/*
-	Plugin Name: Protection against DDoS
-	Plugin URI: http://aimbox.com
-	Description: Protection against DDoS.
-	Version: 1.5.2
-	Author: Aimbox
-	Author URI: http://aimbox.com
-	License: GPLv2 or later
-
-	*/
+/*
+Plugin Name: Protection against DDoS
+Description: Protection against DDoS.
+Author: WPChef
+Author URI: https://wpchef.org
+Text Domain: protection-against-ddos
+Version: 1.5.2
+*/
 
 	// Make sure we don't expose any info if called directly
 	if ( !function_exists( 'add_action' ) ) {
@@ -194,11 +192,11 @@
 							</label></p>
 							<p><label>
 								<input type="checkbox" name="<?php echo $this->option_name?>[deny_autodiscover]" value="1" <?php echo $settings['deny_autodiscover'] ? 'checked ':'' ?>/>
-                                    Deny access <b>from outside</b> to <a href="https://docs.microsoft.com/Exchange/architecture/client-access/autodiscover" target="_blank">/autodiscover/autodiscover.xml</a>
+                                    Deny access <b>from outside</b> to <a href="https://docs.microsoft.com/Exchange/architecture/client-access/autodiscover" target="_blank">autodiscover/autodiscover.xml</a>
 							</label></p>
 							<p><label>
 								<input type="checkbox" name="<?php echo $this->option_name?>[deny_wpad]" value="1" <?php echo $settings['deny_wpad'] ? 'checked ':'' ?>/>
-                                    Deny access <b>from outside</b> to <a href="https://wikipedia.org/wiki/Web_Proxy_Auto-Discovery_Protocol" target="_blank">/wpad.dat</a>
+                                    Deny access <b>from outside</b> to <a href="https://wikipedia.org/wiki/Web_Proxy_Auto-Discovery_Protocol" target="_blank">wpad.dat</a>
 							</label></p>
 					<tr>
 						<th>

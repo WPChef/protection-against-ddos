@@ -1,9 +1,9 @@
 === Protection Against DDoS ===
 Contributors: wpchefgadget
-Tags: security, DDoS, peformance, speed, threats, protect, brute force, login, authentication, Error 522, Connection timed out, plugin, site down, login security, wordpress security
+Tags: DDoS, peformance, security, brute force, login
 Requires at least: 3.5.2
-Tested up to: 4.9.4
-Stable tag: 1.5.1
+Tested up to: 5.2.1
+Stable tag: 1.5.2
 
 Protects your login, xmlrpc and RSS feeds pages against DDoS attacks. Denies access to your site from certain countries via CloudFlare.
 
@@ -51,6 +51,9 @@ This plugin only works on the servers that support .htaccess files. Most Linux s
 1. Settings page.
 
 == Changelog ==
+
+= 1.5.2 =
+* Added access control for autodiscover/autodiscover.xml and wpad.dat.
 
 = 1.5.1 =
 * Can deny access to xmlrpc, RSS and certain countries now.
