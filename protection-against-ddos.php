@@ -207,7 +207,7 @@ Version: 1.5.2
 						<td>
 							<input type="text" name="<?php echo $this->option_name ?>[countries]" value="<?php echo esc_attr($settings['countries']) ?>" />
 							<p class="description">
-								For CloudFlare users only: Specify the <a href="https://support.cloudflare.com/hc/en-us/articles/205072537-What-are-the-two-letter-country-codes-for-the-Access-Rules-" target="_blank">two-letter country codes</a> here you want to allow or deny, separated by comma.
+								For CloudFlare users only: Specify the <a href="https://support.cloudflare.com/hc/articles/217074967#1QrbtSK5NSL7A0FOWD2bbZ" target="_blank">two-letter country codes</a> here you want to allow or deny, separated by comma.
 							</p>
 					<tr>
 						<th>

@@ -2,7 +2,7 @@
 Contributors: wpchefgadget
 Tags: DDoS, peformance, security, brute force, login
 Requires at least: 3.5.2
-Tested up to: 5.2.1
+Tested up to: 5.4
 Stable tag: 1.5.2
 
 Protects your login, xmlrpc and RSS feeds pages against DDoS attacks. Denies access to your site from certain countries via CloudFlare.
